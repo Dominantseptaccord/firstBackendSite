@@ -31,7 +31,7 @@ const connectToDb = async () => {
 connectToDb();
 
 // Routes
-const directionRoutes = require("./routes/Direction");
+const directionRoutes = require("./routes/direction");
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/Data");
 const courseRoutes = require("./routes/course");
