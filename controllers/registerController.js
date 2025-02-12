@@ -17,19 +17,31 @@ const registerController = {
       if (existingUser) {
         return res.status(400).json({ msg: "User already exists" });
       }
+  
       const hashedPassword = await bcrypt.hash(password, 10);
-
-
+  
       const newUser = new Data({
         userName,
         emailName,
         password: hashedPassword,
         direction
       });
-
-
+  
       await newUser.save();
-
+  
+      const directionTitle = direction.trim();
+      const existingDirection = await Direction.findOne({ title: directionTitle });
+      
+      if (!existingDirection) {
+        const newDirection = new Direction({
+          title: directionTitle,
+          description: `Initial configuration by ${emailName}`, // Добавляем email пользователя
+          courses: []
+        });
+        
+        await newDirection.save();
+      }
+  
       res.status(201).json({ 
         msg: "Registration successful!",
         user: {
@@ -38,7 +50,7 @@ const registerController = {
           direction: newUser.direction
         }
       });
-
+  
     } catch (error) {
       console.error("Registration error:", error);
       res.status(500).json({ msg: "Registration failed" });
