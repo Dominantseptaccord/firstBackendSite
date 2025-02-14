@@ -57,9 +57,11 @@
 
         return res.status(200).json({ msg: "Login successful", token });
       } catch (error) {
-        console.error("Login error:", error);
-        res.status(500).json({ msg: "Unable to login" });
-      }
+          const err = new Error('Login failed');
+          err.statusCode = 500;
+          err.details = error.message;
+          next(err);
+    }
     },
 
     verify2FA: async (req, res) => {

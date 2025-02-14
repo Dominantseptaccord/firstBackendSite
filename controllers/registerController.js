@@ -35,25 +35,19 @@ const registerController = {
       if (!existingDirection) {
         const newDirection = new Direction({
           title: directionTitle,
-          description: `Initial configuration by ${emailName}`, // Добавляем email пользователя
+          description: `Initial configuration by ${emailName}`, 
           courses: []
         });
         
         await newDirection.save();
       }
   
-      res.status(201).json({ 
-        msg: "Registration successful!",
-        user: {
-          id: newUser._id,
-          email: newUser.emailName,
-          direction: newUser.direction
-        }
-      });
-  
+      res.redirect("/signin");
     } catch (error) {
-      console.error("Registration error:", error);
-      res.status(500).json({ msg: "Registration failed" });
+        const err = new Error('Registration failed');
+        err.statusCode = 500;
+        err.details = error.message;
+        next(err);
     }
   },
 
@@ -62,8 +56,7 @@ const registerController = {
       const users = await Data.find({}, { password: 0 });
       res.status(200).json({ users });
     } catch (error) {
-      console.log(error);
-      res.status(500).json({ msg: "Unable to fetch users" });
+        next(new Error('Unable to fetch users'));
     }
   },
 

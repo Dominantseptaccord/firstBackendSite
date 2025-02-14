@@ -5,31 +5,38 @@ require("dotenv").config();
 const activeSessions = {};
 
 const authenticateToken = async (req, res, next) => {
-  const token = req.cookies.auth_token;
-
-  if (!token) {
-    return res.redirect('/signin'); // Перенаправляем на страницу входа
-  }
-
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    
-    // Проверяем активность сессии
-    if (activeSessions[decoded.id] !== token) {
-      return res.redirect('/signin');
-    }
+      const token = req.cookies.auth_token;
+      
+      if (!token) {
+          const error = new Error('Authentication required');
+          error.statusCode = 401;
+          throw error;
+      }
 
-    // Получаем полные данные пользователя из базы
-    const user = await Data.findById(decoded.id);
-    if (!user) {
-      return res.redirect('/signin');
-    }
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      
+      if (activeSessions[decoded.id] !== token) {
+          const error = new Error('Session expired');
+          error.statusCode = 401;
+          throw error;
+      }
 
-    // Добавляем пользователя в запрос
-    req.user = user;
-    next();
+      const user = await Data.findById(decoded.id);
+      if (!user) {
+          const error = new Error('User not found');
+          error.statusCode = 404;
+          throw error;
+      }
+
+      req.user = user;
+      next();
   } catch (error) {
-    return res.redirect('/signin');
+      if (error.name === 'TokenExpiredError') {
+          error.message = 'Session expired';
+          error.statusCode = 401;
+      }
+      next(error);
   }
 };
 

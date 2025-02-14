@@ -1,102 +1,340 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Motivation</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <!--Favicons-->
-    <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+  <meta charset="utf-8">
+  <title>KotlinRush LMS – Education</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/styles/style.css">
+  <link rel="apple-touch-icon" href="/public/imgs/favicon.png" sizes="180x180">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    /* Фиксированный сайдбар */
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: #7F52FF;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+    /* Основной контент с отступом слева */
+    .main-content {
+      margin-left: 250px;
+      padding: 0;
+    }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: url('https://blog.jetbrains.com/wp-content/uploads/2024/05/Social_Share_1280x720-2x-1.png') center center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      bottom: 0%; /* Смещено выше для лучшей видимости текста */
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    /* Секция о курсе */
+    .section {
+      padding: 40px 100px;
+      background-color: #222;
+      color: #fff;
+    }
+    /* Секция отзывов */
+    .comments-section {
+      padding: 40px 100px;
+      background-color: #333;
+      color: #fff;
+    }
+    .comment-card {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
-<!--SideBar-->
-<body class="text-light" style="background-color: rgb(34,34,34); font-family: 'Roboto Condensed', sans-serif;">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="position: fixed; height: 100vh; width: 230px;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <img src="public/imgs/kotlin.png" style="max-height: 80%; height: 50px;" alt="Sigma Logo">
-            <span class="text-light" style="font-size: 1.5rem; font-weight: bold; color: #333;">KOTLINRUSH</span>
+<body class="bg-dark text-light" style="font-family: 'Roboto Condensed', sans-serif;"> 
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="/" class="d-flex align-items-center mb-3 text-white text-decoration-none">
+      <img src="https://cdn.worldvectorlogo.com/logos/kotlin-2.svg" alt="KotlinRush Logo" width="40" height="40" class="me-2">
+      <span class="fs-4">KOTLINRUSH</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="/education" class="nav-link active text-white">
+          <i class="bi bi-house-door me-2"></i>
+          Education
         </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
-                <svg width="20px" height="20px" viewBox="0 0 64 64" data-name="Material Expand" id="Material_Expand" xmlns="http://www.w3.org/2000/svg"><path d="M56,2H8A6.006,6.006,0,0,0,2,8V42a6.006,6.006,0,0,0,6,6H21.764l-3,6H14a2,2,0,0,0-2,2v6h4V58H48v4h4V56a2,2,0,0,0-2-2H45.236l-3-6H56a6.006,6.006,0,0,0,6-6V8A6.006,6.006,0,0,0,56,2ZM8,6H56a2,2,0,0,1,2,2V36H6V8A2,2,0,0,1,8,6ZM40.764,54H23.236l3-6H37.764ZM56,44H8a2,2,0,0,1-2-2V40H58v2A2,2,0,0,1,56,44Z"/><rect height="4" width="22" x="32" y="11"/></svg>
-              Course
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-                <svg width="20px" height="20px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <path d="M185.469407,39.207713 L356.136074,39.207713 L356.136074,81.8743797 L185.469407,81.8743797 L185.469407,39.207713 Z M185.469407,188.541046 L356.136074,188.541046 L356.136074,231.207713 L185.469407,231.207713 L185.469407,188.541046 Z M14.8027404,295.207713 L121.469407,295.207713 L121.469407,401.87438 L14.8027404,401.87438 L14.8027404,295.207713 Z M46.8027404,327.207713 L46.8027404,369.87438 L89.4694071,369.87438 L89.4694071,327.207713 L46.8027404,327.207713 Z M185.469407,337.87438 L356.136074,337.87438 L356.136074,380.541046 L185.469407,380.541046 L185.469407,337.87438 Z M119.285384,-7.10542736e-15 L144.649352,19.5107443 L68.6167605,118.353113 L1.42108547e-14,58.3134476 L21.0721475,34.2309934 L64.0400737,71.8050464 L119.285384,-7.10542736e-15 Z M119.285384,149.333333 L144.649352,168.844078 L68.6167605,267.686446 L1.42108547e-14,207.646781 L21.0721475,183.564327 L64.0400737,221.13838 L119.285384,149.333333 Z"></path>
-                </svg>
-              Tasks
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM7.92 9.234v.102a.5.5 0 0 0 .5.5h.997a.499.499 0 0 0 .499-.499c0-1.29.998-1.979 2.34-1.979 1.308 0 2.168.689 2.168 1.67 0 .928-.482 1.359-1.686 1.91l-.344.154C11.379 11.54 11 12.21 11 13.381v.119a.5.5 0 0 0 .5.5h.997a.499.499 0 0 0 .499-.499c0-.516.138-.723.55-.912l.345-.155c1.445-.654 2.529-1.514 2.529-3.39v-.103c0-1.978-1.72-3.441-4.164-3.441-2.478 0-4.336 1.428-4.336 3.734zm2.58 7.757c0 .867.659 1.509 1.491 1.509.85 0 1.509-.642 1.509-1.509 0-.867-.659-1.491-1.509-1.491-.832 0-1.491.624-1.491 1.491z" fill="#000000"/></svg>
-              Help
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-                <svg width="30px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 9H21M7 3V5M17 3V5M10 14L12 12M12 12L14 14M12 12V18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-              Reminder
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-                <svg width="30px" height="24px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                    <title>comment-forum-solid</title>
-                    <g id="Layer_2" data-name="Layer 2">
-                      <g id="invisible_box" data-name="invisible box">
-                        <rect width="48" height="48" fill="none"/>
-                      </g>
-                      <g id="icons_Q2" data-name="icons Q2">
-                        <path d="M31.9,6H4.1A2,2,0,0,0,2,8V36a1,1,0,0,0,1,1,1.3,1.3,0,0,0,.8-.3L13,28H31.9A2,2,0,0,0,34,26V8a2,2,0,0,0-2.1-2Z"/>
-                        <path d="M43.9,15H38V32H14v3a2,2,0,0,0,2.1,2H35l9.2,8.7a1.3,1.3,0,0,0,.8.3,1,1,0,0,0,1-1V17A2,2,0,0,0,43.9,15Z"/>
-                      </g>
-                    </g>
-                  </svg>
-              Forum
-            </a>
-          </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong><span id="userName"></span></strong>
-            <h1> <span id="userName"></span> </h1>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
-        </div>
-      </div>
-<!--Nav-->
-<header class="p-3 text-bg-dark">
-  <div class="container">
-    <div class="d-flex mx-5 flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-5 px-5 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-3 mx-2 text-secondary">About the course</a></li>
-        <li><a href="#" class="nav-link px-3 mx-2 text-white">Features</a></li>
-        <li><a href="#" class="nav-link px-3 mx-2 text-white">Training format</a></li>
-        <li><a href="#" class="nav-link px-3 mx-2 text-white">Reviews</a></li>
-        <li><a href="#" class="nav-link px-3 mx-2 text-white">Media</a></li>
+      </li>
+      <li>
+        <a href="/course" class="nav-link text-white">
+          <i class="bi bi-collection me-2"></i>
+          Courses
+        </a>
+      </li>
+      <li>
+        <a href="/check" class="nav-link text-white">
+          <i class="bi bi-shield-lock me-2"></i>
+          2FA Setup
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+        <img src="https://github.com/mdo.png" alt="User" width="32" height="32" class="rounded-circle me-2">
+        <strong><%= userName %></strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+        <li><a class="dropdown-item" href="/profile">Profile</a></li>
+        <li><a class="dropdown-item" href="/settings">Settings</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="/logout">Sign out</a></li>
       </ul>
-      <div class="text-end">
-        <button type="button" class="btn btn-success btn-lg">Start Learning</button>
-      </div>
     </div>
   </div>
-</header>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="hero-overlay">
+        <h1 class="display-4">Why Choose Kotlin?</h1>
+        <p class="lead">Learn Kotlin with us and become part of a community of professionals!</p>
+        <a class="btn btn-success btn-lg" href="/course-syntax">Start Learning</a>
+      </div>
+    </div>
+
+    <!-- "About the Course" Section -->
+    <section class="section">
+      <h2>About the Course</h2>
+      <p>
+        This course is designed to help you progress from a beginner to a professional Kotlin developer.
+        Learn the fundamentals, advanced topics, and work on practical projects that will help you master modern development technologies.
+      </p>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <h2>Reviews</h2>
+      <form id="commentForm">
+          <div class="mb-3">
+              <textarea class="form-control" id="commentText" rows="4" placeholder="Leave your review..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  
+      <div id="commentList"></div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <p>&copy; 2025 KotlinRush. All Rights Reserved.</p>
+    <p>
+      <a href="/privacy" class="text-white text-decoration-none">Privacy Policy</a>  
+      <a href="/terms" class="text-white text-decoration-none">Terms of Service</a>
+    </p>
+  </footer>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Comment Scripts -->
+  <script>
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const dd = String(date.getDate()).padStart(2, '0');
+      const mm = String(date.getMonth() + 1).padStart(2, '0');
+      const yyyy = date.getFullYear();
+      const hh = String(date.getHours()).padStart(2, '0');
+      const min = String(date.getMinutes()).padStart(2, '0');
+      return `${dd}.${mm}.${yyyy} ${hh}:${min}`;
+    }
+  
+    function updateScoreColor(el, score) {
+      el.classList.remove("text-success", "text-danger", "text-secondary");
+      if (score > 0) {
+        el.classList.add("text-success");
+      } else if (score < 0) {
+        el.classList.add("text-danger");
+      } else {
+        el.classList.add("text-secondary");
+      }
+    }
+  
+    function createCommentHeader(userName, direction, createdAt) {
+      const headerContainer = document.createElement("div");
+      headerContainer.classList.add("d-flex", "justify-content-between", "align-items-center");
+      
+      const leftContainer = document.createElement("div");
+      const usernameEl = document.createElement("h5");
+      usernameEl.classList.add("card-title", "mb-0");
+      usernameEl.textContent = userName;
+      
+      const directionEl = document.createElement("small");
+      directionEl.classList.add("d-block", "text-muted");
+      directionEl.style.fontSize = "0.85rem";
+      directionEl.textContent = direction;
+      
+      leftContainer.appendChild(usernameEl);
+      leftContainer.appendChild(directionEl);
+      
+      const dateEl = document.createElement("small");
+      dateEl.classList.add("comment-date");
+      dateEl.textContent = formatDate(createdAt);
+      
+      headerContainer.appendChild(leftContainer);
+      headerContainer.appendChild(dateEl);
+      
+      return headerContainer;
+    }
+  
+    function createLikeContainer(comment) {
+      const likeContainer = document.createElement("div");
+      likeContainer.classList.add("d-flex", "align-items-center", "mt-2");
+  
+      const likeBtn = document.createElement("button");
+      likeBtn.classList.add("btn", "btn-sm", "btn-outline-success", "me-2");
+      likeBtn.innerHTML = '<i class="bi bi-hand-thumbs-up"></i>';
+  
+      const dislikeBtn = document.createElement("button");
+      dislikeBtn.classList.add("btn", "btn-sm", "btn-outline-danger", "me-2");
+      dislikeBtn.innerHTML = '<i class="bi bi-hand-thumbs-down"></i>';
+  
+      const scoreSpan = document.createElement("span");
+      scoreSpan.classList.add("fw-bold");
+      scoreSpan.textContent = comment.score;
+      updateScoreColor(scoreSpan, comment.score);
+  
+      likeBtn.addEventListener("click", function() {
+        // Отключаем кнопки для предотвращения повторного голосования
+        likeBtn.disabled = true;
+        dislikeBtn.disabled = true;
+        fetch("/api/comments/" + comment._id + "/like", { method: "POST", credentials: "include" })
+          .then(res => res.json())
+          .then(updatedData => {
+            scoreSpan.textContent = updatedData.comment.score;
+            updateScoreColor(scoreSpan, updatedData.comment.score);
+          })
+          .catch(err => {
+            console.error("Error liking comment", err);
+            // В случае ошибки возвращаем возможность голосовать
+            likeBtn.disabled = false;
+            dislikeBtn.disabled = false;
+          });
+      });
+  
+      dislikeBtn.addEventListener("click", function() {
+        // Отключаем кнопки для предотвращения повторного голосования
+        likeBtn.disabled = true;
+        dislikeBtn.disabled = true;
+        fetch("/api/comments/" + comment._id + "/dislike", { method: "POST", credentials: "include" })
+          .then(res => res.json())
+          .then(updatedData => {
+            scoreSpan.textContent = updatedData.comment.score;
+            updateScoreColor(scoreSpan, updatedData.comment.score);
+          })
+          .catch(err => {
+            console.error("Error disliking comment", err);
+            // В случае ошибки возвращаем возможность голосовать
+            likeBtn.disabled = false;
+            dislikeBtn.disabled = false;
+          });
+      });
+  
+      likeContainer.appendChild(likeBtn);
+      likeContainer.appendChild(dislikeBtn);
+      likeContainer.appendChild(scoreSpan);
+      return likeContainer;
+    }
+  
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch("/api/comments?course=education", { credentials: "include" })
+        .then(response => response.json())
+        .then(data => {
+          const commentList = document.getElementById("commentList");
+          data.comments.forEach(comment => {
+            const commentDiv = document.createElement("div");
+            commentDiv.classList.add("card", "comment-card");
+            
+            const commentBody = document.createElement("div");
+            commentBody.classList.add("card-body");
+  
+            const headerContainer = createCommentHeader(comment.userName, comment.direction, comment.createdAt);
+            const commentContent = document.createElement("p");
+            commentContent.classList.add("card-text");
+            commentContent.textContent = comment.commentText;
+            
+            const likeContainer = createLikeContainer(comment);
+            
+            commentBody.appendChild(headerContainer);
+            commentBody.appendChild(commentContent);
+            commentBody.appendChild(likeContainer);
+            commentDiv.appendChild(commentBody);
+            commentList.appendChild(commentDiv);
+          });
+        })
+        .catch(error => console.error("Error fetching comments:", error));
+    });
+  
+    document.getElementById("commentForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const commentText = document.getElementById("commentText").value;
+      if (commentText) {
+        try {
+          const response = await fetch("/api/comments", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ 
+              commentText: commentText,
+              course: "education" 
+            }),
+            credentials: "include"
+          });
+          const data = await response.json();
+          if (response.ok) {
+            const commentList = document.getElementById("commentList");
+            const commentDiv = document.createElement("div");
+            commentDiv.classList.add("card", "comment-card");
+            
+            const commentBody = document.createElement("div");
+            commentBody.classList.add("card-body");
+            const headerContainer = createCommentHeader(data.comment.userName, data.comment.direction, data.comment.createdAt);
+            const commentContent = document.createElement("p");
+            commentContent.classList.add("card-text");
+            commentContent.textContent = data.comment.commentText;
+            const likeContainer = createLikeContainer(data.comment);
+            
+            commentBody.appendChild(headerContainer);
+            commentBody.appendChild(commentContent);
+            commentBody.appendChild(likeContainer);
+            commentDiv.appendChild(commentBody);
+            commentList.insertBefore(commentDiv, commentList.firstChild);
+            document.getElementById("commentText").value = "";
+          } else {
+            alert(data.msg);
+          }
+        } catch (error) {
+          console.error("Error posting comment:", error);
+        }
+      }
+    });
+  </script>  
+
 </body>
 </html>
